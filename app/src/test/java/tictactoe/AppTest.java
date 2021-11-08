@@ -17,7 +17,13 @@ class AppTest {
 
     @Test
     void WhenMarkOutsideXAxisThenThrowRuntimeException() {
-        RuntimeException ex = assertThrows(RuntimeException.class, () -> tictactoe.play(5,2));
+        RuntimeException ex = assertThrows(RuntimeException.class, () -> tictactoe.play(5, 2));
+        assertEquals("Invalid mark outside the board", ex.getMessage());
+    }
+
+    @Test
+    void WhenMarkOutsideYAxisThenThrowRuntimeException() {
+        RuntimeException ex = assertThrows(RuntimeException.class, () -> tictactoe.play(2,5));
         assertEquals("Invalid mark outside the board", ex.getMessage());
     }
 }
