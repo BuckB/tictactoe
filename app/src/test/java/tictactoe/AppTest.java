@@ -16,21 +16,26 @@ class AppTest {
     }
 
     @Test
-    void WhenMoveOutsideXAxisThenThrowsRuntimeException() {
+    void whenMoveOutsideXAxisThenThrowsRuntimeException() {
         RuntimeException ex = assertThrows(RuntimeException.class, () -> tictactoe.play(5, 2));
         assertEquals("Invalid move outside the board", ex.getMessage());
     }
 
     @Test
-    void WhenMoveOutsideYAxisThenThrowsRuntimeException() {
+    void whenMoveOutsideYAxisThenThrowsRuntimeException() {
         RuntimeException ex = assertThrows(RuntimeException.class, () -> tictactoe.play(2,5));
         assertEquals("Invalid move outside the board", ex.getMessage());
     }
 
     @Test
-    void WhenMoveOnOccupiedSpaceThenThrowsRuntimeException() {
+    void whenMoveOnOccupiedSpaceThenThrowsRuntimeException() {
         tictactoe.play(1, 1);
         RuntimeException ex = assertThrows(RuntimeException.class, () -> tictactoe.play(1, 1));
         assertEquals("Invalid move, this spot is occupied", ex.getMessage());
+    }
+
+    @Test
+    void givenFirstTurnWhenNextPlayerThenX() {
+        assertEquals('X', tictactoe.nextPlayer());
     }
 }
