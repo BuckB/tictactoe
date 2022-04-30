@@ -3,15 +3,15 @@ package tictactoe;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class AppTest {
 
     static App tictactoe;
 
-    @BeforeAll
-    static void before() {
+    @BeforeEach
+    public void before() {
         tictactoe = new App();
     }
 
@@ -37,5 +37,11 @@ class AppTest {
     @Test
     void givenFirstTurnWhenNextPlayerThenX() {
         assertEquals('X', tictactoe.nextPlayer());
+    }
+
+    @Test
+    void givenLastTurnWasXWhenNextPlayerThenO() {
+        tictactoe.play(1, 1);
+        assertEquals('O', tictactoe.nextPlayer());
     }
 }
