@@ -44,4 +44,20 @@ class AppTest {
         tictactoe.play(1, 1);
         assertEquals('O', tictactoe.nextPlayer());
     }
+
+    @Test
+    void whenPlayThenNoWinner() {
+        String actual = tictactoe.play(1,1);
+        assertEquals("No winner.", actual);
+    }
+
+    @Test
+    void whenPlayAndHorizontalLineThenWinner() {
+        tictactoe.validateSpace(0, 0, 'X');
+        tictactoe.validateSpace(1, 0, 'O');
+        tictactoe.validateSpace(0, 1, 'X');
+        tictactoe.validateSpace(2, 0, 'O');
+        String actual = tictactoe.play(0, 2);
+        assertEquals("X is the winner.", actual);
+    }
 }

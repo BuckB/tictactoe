@@ -5,11 +5,19 @@ public class App {
     private Character[][] board = new Character[3][3];
     private char lastPlayer = '\0';
 
-    public void play(int x, int y) {
+    public String play(int x, int y) {
         validateMove(x);
         validateMove(y);
-        validateSpace(x, y);
         lastPlayer = nextPlayer();
+        validateSpace(x, y, lastPlayer);
+        for (int index = 0; index < 3; index++) {
+            if (board[index][0] == lastPlayer &&
+                    board[index][1] == lastPlayer &&
+                    board[index][2] == lastPlayer) {
+                return lastPlayer + " is the winner.";
+            }
+        }
+        return "No winner.";
     }
 
     public void validateMove(int position) {
@@ -18,11 +26,11 @@ public class App {
         }
     }
 
-    public void validateSpace(int x, int y) {
+    public void validateSpace(int x, int y, char lastPlayer) {
         if (board[x][y] != null) {
             throw new RuntimeException("Invalid move, this spot is occupied");
         }
-        board[x][y] = 'X';
+        board[x][y] = lastPlayer;
     }
 
     public char nextPlayer() {
