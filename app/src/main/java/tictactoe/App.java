@@ -10,12 +10,8 @@ public class App {
         validateMove(y);
         lastPlayer = nextPlayer();
         validateSpace(x, y, lastPlayer);
-        for (int index = 0; index < 3; index++) {
-            if (board[index][0] == lastPlayer &&
-                    board[index][1] == lastPlayer &&
-                    board[index][2] == lastPlayer) {
-                return lastPlayer + " is the winner.";
-            }
+        if (isWin()) {
+            return lastPlayer + " is the winner.";
         }
         return "No winner.";
     }
@@ -35,5 +31,16 @@ public class App {
 
     public char nextPlayer() {
         return lastPlayer == 'X' ? 'O' : 'X';
+    }
+
+    public boolean isWin() {
+        for (int index = 0; index < 3; index++) {
+            if (board[index][0] == lastPlayer &&
+                    board[index][1] == lastPlayer &&
+                    board[index][2] == lastPlayer) {
+                return true;
+            }
+        }
+        return false;
     }
 }
