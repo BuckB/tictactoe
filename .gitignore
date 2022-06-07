@@ -10,3 +10,4 @@ build
 
 # Ignore Java class files
 *.class
+.vscode/settings.json
