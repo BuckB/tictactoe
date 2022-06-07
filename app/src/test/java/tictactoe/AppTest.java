@@ -2,6 +2,7 @@ package tictactoe;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -103,5 +104,13 @@ class AppTest {
         tictactoe.play(2,1);
         String actual = tictactoe.play(2,2);
         assertEquals("It's a draw.", actual);
+    }
+
+    @Test
+    void givenAiTurnCheckForLosingCondition() {
+        tictactoe.play(0, 0);
+        tictactoe.play(1, 1);
+        tictactoe.play(0, 1);
+        assertTrue(tictactoe.isDefeatPossible());
     }
 }
