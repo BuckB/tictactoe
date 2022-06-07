@@ -53,11 +53,55 @@ class AppTest {
 
     @Test
     void whenPlayAndHorizontalLineThenWinner() {
-        tictactoe.validateSpace(0, 0, 'X');
-        tictactoe.validateSpace(1, 0, 'O');
-        tictactoe.validateSpace(0, 1, 'X');
-        tictactoe.validateSpace(2, 0, 'O');
+        tictactoe.play(0, 0);
+        tictactoe.play(1, 0);
+        tictactoe.play(0, 1);
+        tictactoe.play(2, 0);
         String actual = tictactoe.play(0, 2);
         assertEquals("X is the winner.", actual);
+    }
+
+    @Test
+    void whenPlayAndVerticalLineThenWinner() {
+        tictactoe.play(0, 0);
+        tictactoe.play(1, 1);
+        tictactoe.play(1, 0);
+        tictactoe.play(2, 1);
+        String actual = tictactoe.play(2, 0);
+        assertEquals("X is the winner.", actual);
+    }
+
+    @Test
+    void whenPlayAndDiagonalLineThenWinner() {
+        tictactoe.play(0, 0);
+        tictactoe.play(1, 0);
+        tictactoe.play(1, 1);
+        tictactoe.play(2, 0);
+        String actual = tictactoe.play(2, 2);
+        assertEquals("X is the winner.", actual);
+    }
+
+    @Test
+    void whenPlayAndReverseDiagonalLineThenWinner() {
+        tictactoe.play(0, 2);
+        tictactoe.play(1, 0);
+        tictactoe.play(1, 1);
+        tictactoe.play(0, 0);
+        String actual = tictactoe.play(2, 0);
+        assertEquals("X is the winner.", actual);
+    }
+
+    @Test
+    void whenNoMovesLeftThenDraw() {
+        tictactoe.play(1,1);
+        tictactoe.play(0,0);
+        tictactoe.play(0,2);
+        tictactoe.play(2,0);
+        tictactoe.play(1,0);
+        tictactoe.play(1,2);
+        tictactoe.play(0,1);
+        tictactoe.play(2,1);
+        String actual = tictactoe.play(2,2);
+        assertEquals("It's a draw.", actual);
     }
 }
