@@ -10,4 +10,8 @@ build
 
 # Ignore Java class files
 *.class
+.classpath
+.project
 .vscode/settings.json
+app/.classpath
+app/.project
